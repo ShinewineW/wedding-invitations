@@ -8,6 +8,9 @@
     "setup": "node scripts/themes.mjs install",
     "build": "node scripts/themes.mjs build",
     "build:local": "node scripts/themes.mjs build --local",
+    "build:demo": "node scripts/build-demo.mjs",
+    "preview:demo": "node scripts/serve-demo.mjs",
+    "test:demo": "node scripts/render-demo-previews.mjs",
     "assets": "node scripts/prepare-assets.mjs",
     "check:public": "node scripts/check-public.mjs"
   },

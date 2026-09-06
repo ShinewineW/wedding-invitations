@@ -5,7 +5,7 @@ const root = fileURLToPath(new URL('../', import.meta.url));
 const files = execFileSync('git', ['ls-files', '-z'], { cwd: root }).toString().split('\0').filter(Boolean);
 if (!files.length) throw new Error('Stage the intended source files with git add before auditing.');
 const issues = [];
-const privatePath = /(^|\/)(\.local|node_modules|dist|release|exports|evidence|\.local-review|local-review|test-results|playwright-report)(\/|$)/;
+const privatePath = /(^|\/)(\.local|node_modules|dist|site|release|exports|evidence|\.local-review|local-review|test-results|playwright-report)(\/|$)/;
 const photoOrArchive = /\.(jpe?g|png|webp|avif|heic|gif|mp4|mov|zip|pdf)$/i;
 const sensitiveText = [
   ['absolute home path', /\/(?:Users|home)\/[^\s"']+/],

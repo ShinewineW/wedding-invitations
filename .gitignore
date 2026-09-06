@@ -1,5 +1,6 @@
 # Private photographs, original documentation and local verification
 /.local/
+/site/
 
 # All photographic inputs and generated variants are recreated before builds.
 /themes/yusheng/public/images/
