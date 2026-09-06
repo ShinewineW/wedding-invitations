@@ -1,0 +1,15 @@
+{
+  "name": "wedding-invitations",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22.13.0" },
+  "scripts": {
+    "setup": "node scripts/themes.mjs install",
+    "build": "node scripts/themes.mjs build",
+    "build:local": "node scripts/themes.mjs build --local",
+    "assets": "node scripts/prepare-assets.mjs",
+    "check:public": "node scripts/check-public.mjs"
+  },
+  "devDependencies": { "sharp": "0.34.5" }
+}

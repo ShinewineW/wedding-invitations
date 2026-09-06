@@ -1,0 +1,803 @@
+/* ============================================================================
+   One Line — a wedding invitation drawn as a single unbroken line.
+
+   The stylesheet is organised as: fonts, tokens, reset, page furniture, then one
+   block per chapter. Chapter progress arrives as --cp on :root, written once per
+   frame by the stage, so type can respond to scroll without React re-rendering.
+   ========================================================================== */
+
+@font-face {
+  font-family: 'Cormorant';
+  src: url('/fonts/cormorant-var.woff2') format('woff2');
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Cormorant';
+  src: url('/fonts/cormorant-var-italic.woff2') format('woff2');
+  font-weight: 300 700;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Instrument Sans';
+  src: url('/fonts/instrument-var.woff2') format('woff2');
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* One number moves the entire page between day and night. Every colour a visitor
+   sees is mixed from the two sets below, so Chapter III's tonal change is a single
+   scroll-driven value rather than a second stylesheet or a class swap. */
+@property --night {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 0;
+}
+
+:root {
+  --night: 0;
+  /* The tonal change is deliberately abrupt: colours cross over the middle fifth
+     of the hand-over and no further. Any cross-fade has one bad instant in the
+     middle, where the ground sits at mid-luminance and neither dark nor light
+     text has contrast against it; the fix is to cross fast enough that the
+     instant is a couple of frames, and to let the 120ms colour transition on
+     `body` carry it. It is also simply more dramatic than a slow fade. The moon,
+     which needs the dark to be seen at all, comes up on its own slower curve. */
+  --cut: clamp(0, calc((var(--night) - 0.44) / 0.12), 1);
+  --mix: calc(var(--cut) * 100%);
+
+  --paper-day: #f2ede4;
+  --paper-night: #14100c;
+  --deep-day: #e7dfd1;
+  --deep-night: #1f1a14;
+  --ink-day: #16130f;
+  --ink-night: #efe8d9;
+  --ink2-day: #4b453b;
+  --ink2-night: #b6ad9b;
+  /* both ends of this token clear 4.5:1 on their own ground */
+  --ink3-day: #6d6659;
+  --ink3-night: #968e7d;
+  /* the silk. the only red on the page, and it means exactly one thing */
+  --thread-day: #ba4029;
+  --thread-night: #f4643f;
+
+  --paper: color-mix(in oklab, var(--paper-night) var(--mix), var(--paper-day));
+  --paper-deep: color-mix(in oklab, var(--deep-night) var(--mix), var(--deep-day));
+  --ink: color-mix(in oklab, var(--ink-night) var(--mix), var(--ink-day));
+  --ink-2: color-mix(in oklab, var(--ink2-night) var(--mix), var(--ink2-day));
+  --ink-3: color-mix(in oklab, var(--ink3-night) var(--mix), var(--ink3-day));
+  --thread: color-mix(in oklab, var(--thread-night) var(--mix), var(--thread-day));
+  --rule: color-mix(in srgb, var(--ink) 16%, transparent);
+
+  --serif: 'Cormorant', 'Songti SC', 'STSong', 'Noto Serif CJK SC', serif;
+  --sans: 'Instrument Sans', 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif;
+
+  /* container half-width; the canvas derives the same number in shapes.ts */
+  --measure: min(880px, 88vw);
+
+  --cp: 0;
+  /* chapter III's own phase: 0 before it, its progress during, 1 after */
+  --tp: 0;
+
+  color-scheme: light;
+  -webkit-text-size-adjust: 100%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  transition: background-color 120ms linear, color 120ms linear;
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.55;
+  font-synthesis-weight: none;
+  overflow-x: hidden;
+}
+
+/* Paper tooth. Static, painted once, costs nothing per frame. */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: calc(0.05 * (1 - var(--night)));
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* While the thread is held, the page is a surface to pull on rather than text to
+   select. Applied only for the duration of the hold, so ordinary selection works. */
+body.holding {
+  user-select: none;
+  cursor: grabbing;
+}
+
+::selection {
+  background: var(--thread);
+  color: var(--paper);
+}
+
+:focus-visible {
+  outline: 2px solid var(--thread);
+  outline-offset: 4px;
+  border-radius: 1px;
+}
+
+/* ---------------------------------------------------------------- furniture */
+
+/* Yue Lao's moon. It sits behind the canvas so the thread passes in front of it,
+   and it is present only in proportion to how dark the page is. */
+.moon {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: clamp(0, calc((var(--night) - 0.66) * 3), 1);
+}
+
+/* A moon is a small, bright thing with a large faint halo — not a big soft disc,
+   which only ever reads as a grey ball. It sits high and off to one side, out of
+   the way of both the headline and the knot, so the night has three separate
+   things in it rather than one pile in the middle. */
+.moon__disc {
+  position: absolute;
+  left: 74%;
+  top: 13%;
+  width: min(15vmin, 118px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(252, 248, 236, 0.94) 0%,
+    rgba(248, 242, 226, 0.9) 58%,
+    rgba(236, 228, 205, 0.55) 82%,
+    rgba(236, 228, 205, 0) 100%
+  );
+  transform: translate(-50%, -50%) translateY(calc((1 - var(--tp)) * 6vh));
+}
+
+/* the halo it throws on the sky around it */
+.moon__disc::after {
+  content: '';
+  position: absolute;
+  inset: -180%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(240, 232, 208, 0.09) 0%,
+    rgba(240, 232, 208, 0.045) 34%,
+    rgba(240, 232, 208, 0) 68%
+  );
+}
+
+.stage {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.pull-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0;
+}
+.pull-backdrop img {
+  position: absolute;
+  max-width: none;
+  filter: blur(clamp(2px, 0.35vw, 3px));
+}
+
+.page {
+  position: relative;
+  z-index: 2;
+}
+
+/* At the instant the lights go out, the ground is at mid-luminance and neither
+   dark nor light type has contrast against it. Rather than push text through that
+   instant, the page dips out and comes back on the other side: for a moment there
+   is nothing on the screen but the thread. The parabola is 1 at both ends of the
+   crossover and 0 exactly at its middle. */
+.page,
+.colophon {
+  opacity: calc(1 - 4 * var(--cut) * (1 - var(--cut)));
+}
+
+.skip {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 80;
+  transform: translateY(-160%);
+  background: var(--ink);
+  color: var(--paper);
+  padding: 10px 16px;
+  font: 500 12px/1 var(--sans);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.skip:focus {
+  transform: none;
+}
+
+.chapter {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-inline: max(20px, env(safe-area-inset-left));
+}
+
+.hold {
+  position: sticky;
+  top: 0;
+  min-height: 100svh;
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  place-items: center;
+  align-content: center;
+}
+
+
+.meta {
+  font: 500 11px/1.4 var(--sans);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin: 0;
+}
+
+.index {
+  font: 400 16px/1.4 var(--sans);
+  letter-spacing: 0.16em;
+  color: var(--thread);
+  margin: 0 0 0.9rem;
+}
+
+.lead {
+  font-size: clamp(1.5rem, 3.4vw, 2.5rem);
+  font-weight: 300;
+  line-height: 1.45;
+  letter-spacing: -0.012em;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.body {
+  font-size: clamp(1.02rem, 1.5vw, 1.2rem);
+  line-height: 1.9;
+  color: var(--ink-2);
+  max-width: 34em;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ---------------------------------------------------------------- overture */
+
+.overture {
+  min-height: 100svh;
+  justify-content: center;
+  padding-block: clamp(32px, 7svh, 72px);
+}
+.overture__inner {
+  width: min(880px, 88vw);
+  display: grid;
+  gap: clamp(24px, 5svh, 48px);
+  justify-items: center;
+  text-align: center;
+}
+.overture .meta {
+  font: 500 clamp(21px, 3vw, 28px)/1.6 var(--serif);
+  letter-spacing: 0.07em;
+  color: var(--ink);
+}
+.names {
+  display: grid;
+  gap: clamp(32px, 6svh, 64px);
+  width: 100%;
+  margin: 0;
+}
+.names__row {
+  display: flex;
+  justify-content: center;
+}
+.name {
+  font-size: clamp(50px, 11.5vw, 112px);
+  font-weight: 300;
+  line-height: 1.2;
+  letter-spacing: 0.12em;
+  text-indent: 0.12em;
+  white-space: nowrap;
+}
+.overture__meta {
+  display: grid;
+  gap: 1rem;
+  justify-items: center;
+}
+.overture__date {
+  display: grid;
+  gap: 0.5em;
+  margin: 0;
+  font: 500 clamp(20px, 2.4vw, 25px)/1.6 var(--sans);
+  color: var(--ink);
+}
+.overture__venue {
+  font-family: var(--serif);
+  font-size: clamp(20px, 2.2vw, 24px);
+  line-height: 1.6;
+}
+.hint {
+  font: 400 15px/1.6 var(--sans);
+  letter-spacing: 0.1em;
+  color: var(--ink-2);
+  margin: 0;
+}
+.jump {
+  font: 500 15px/1.6 var(--sans);
+  letter-spacing: 0.08em;
+  color: var(--ink-2);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+  padding: 5px 0;
+}
+.jump:hover {
+  color: var(--thread);
+  border-color: var(--thread);
+}
+
+/* ----------------------------------------------------------------- thread */
+
+.thread {
+  padding-block: clamp(60px, 12svh, 120px) 12svh;
+  gap: 36px;
+}
+.thread__head {
+  width: min(560px, 86vw);
+}
+.legend {
+  margin-top: 1.4rem;
+}
+.thread__story {
+  position: relative;
+  width: min(620px, 100%);
+  padding-top: 32px;
+}
+.thread__cord {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  color: var(--thread);
+}
+.thread__moment {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 32px;
+  padding-bottom: clamp(144px, 20svh, 192px);
+}
+.thread__moment:last-child {
+  padding-bottom: 0;
+}
+.thread__photo {
+  position: relative;
+  width: min(78vw, 380px);
+  aspect-ratio: 4 / 5;
+  margin: 0;
+  border: 5px solid var(--paper);
+  background: var(--paper-deep);
+  box-shadow: 0 1px 0 var(--rule);
+}
+.thread__photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.thread__pin {
+  position: absolute;
+  z-index: 1;
+  top: -9px;
+  left: calc(50% - 5px);
+  width: 10px;
+  height: 10px;
+  border: 2px solid var(--thread);
+  border-radius: 50%;
+  background: var(--paper);
+}
+.thread__aside {
+  margin: 0;
+  width: 80%;
+  font-size: 19px;
+  line-height: 1.8;
+  text-align: center;
+  white-space: pre-line;
+}
+.pair {
+  width: min(490px, 80%);
+  display: grid;
+  gap: 22px;
+}
+.voice {
+  font-size: clamp(19px, 2.7vw, 23px);
+  font-weight: 300;
+  line-height: 1.75;
+  margin: 0;
+}
+.voice--a { text-align: left; }
+.voice--b { text-align: right; }
+.voice__who {
+  display: block;
+  font: 500 13px/1.5 var(--sans);
+  letter-spacing: 0.16em;
+  color: var(--thread);
+  margin-bottom: 0.5rem;
+}
+
+/* ------------------------------------------------------------------- pull */
+
+.pull { min-height: 175svh; }
+.pull__inner {
+  width: min(720px, 88vw);
+  display: grid;
+  gap: clamp(28px, 4svh, 48px);
+  justify-items: center;
+  padding-block: 4svh;
+  text-align: center;
+}
+.pull__photo {
+  position: relative;
+  width: 100%;
+  height: clamp(240px, 52svh, 480px);
+  touch-action: pan-y pinch-zoom;
+  user-select: none;
+}
+.pull__handle {
+  position: absolute;
+  inset: 0;
+  touch-action: none;
+  cursor: grab;
+}
+.pull__note {
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin: 0;
+  font: 400 clamp(14px, 1.3vw, 18px)/1.6 var(--serif);
+  letter-spacing: 0.06em;
+  color: var(--thread);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+.pull__copy {
+  width: 100%;
+  max-width: 620px;
+}
+.pull__copy .body {
+  margin: 1rem auto 0;
+  white-space: pre-line;
+}
+.caption {
+  font: 400 14px/1.7 var(--sans);
+  letter-spacing: 0.04em;
+  color: var(--ink-2);
+}
+
+/* -------------------------------------------------------------------- tie */
+
+.tie { min-height: 235svh; }
+.tie__inner {
+  width: min(760px, 92vw);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+  gap: 12px;
+  padding-block: clamp(20px, 4svh, 40px);
+  text-align: center;
+}
+.tie__inner > .index { margin-bottom: 0; }
+.tie__stack {
+  display: grid;
+  width: 100%;
+  align-items: center;
+  min-height: 112px;
+}
+.tie__stack > * { grid-area: 1 / 1; }
+.tie__first {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  opacity: clamp(0, calc(3.34 - var(--tp) * 8.34), 1);
+}
+.tie__before {
+  margin: 0;
+  font-size: clamp(17px, 2.6vw, 24px);
+  color: var(--ink-2);
+}
+.tie__headline {
+  margin: 0;
+  font-size: clamp(34px, 9vw, 68px);
+  font-weight: 300;
+  line-height: 1.3;
+  text-wrap: balance;
+  transform: scale(calc(1 + var(--tp) * 0.04));
+}
+.tie__merged {
+  margin: 0;
+  font-size: clamp(24px, 4.5vw, 36px);
+  font-weight: 300;
+  line-height: 1.6;
+  white-space: pre-line;
+  opacity: clamp(0, calc(var(--tp) * 7.15 - 3), 1);
+}
+.tie__knot {
+  width: min(96vw, 1000px);
+  height: clamp(200px, 32svh, 300px);
+}
+.tie__after {
+  margin: 0;
+  font: 400 clamp(36px, 5vw, 44px)/1.5 var(--serif);
+  white-space: pre-line;
+  color: var(--ink);
+  opacity: clamp(0, calc(var(--tp) * 7.15 - 3.9), 1);
+}
+
+/* -------------------------------------------------------------------- day */
+
+.day {
+  padding-block: 14svh 16svh;
+  gap: clamp(40px, 8svh, 72px);
+}
+.day__head { width: var(--measure); }
+.day__head .lead { font-size: clamp(24px, 3.5vw, 32px); }
+.day__date {
+  display: grid;
+  gap: 18px;
+  margin: 32px 0 0;
+}
+.day__date time { display: grid; gap: 6px; }
+.day__year {
+  font-size: clamp(26px, 4vw, 36px);
+  line-height: 1.3;
+}
+.day__monthday {
+  font-size: clamp(54px, 13vw, 88px);
+  line-height: 1.15;
+  color: var(--thread);
+}
+.day__calendar {
+  font-size: clamp(18px, 2.5vw, 22px);
+  color: var(--ink-2);
+}
+.schedule {
+  width: var(--measure);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+}
+.row {
+  display: grid;
+  grid-template-columns: minmax(100px, 0.55fr) 1fr;
+  column-gap: clamp(16px, 4vw, 40px);
+  align-items: baseline;
+  border-top: 1px solid var(--rule);
+  padding: clamp(26px, 4svh, 42px) 0;
+}
+.row:last-child { border-bottom: 1px solid var(--rule); }
+.row[data-active='1'] { border-top-color: transparent; }
+.row__time {
+  font: italic 500 clamp(38px, 7vw, 62px)/1.1 'Cormorant', Georgia, serif;
+  font-variant-numeric: lining-nums;
+  letter-spacing: 0.01em;
+  color: var(--thread);
+  white-space: nowrap;
+}
+.row__name {
+  display: block;
+  font-size: clamp(23px, 3.8vw, 32px);
+  font-weight: 300;
+  line-height: 1.45;
+}
+.row__where {
+  display: block;
+  font-size: 17px;
+  color: var(--ink-2);
+  margin-top: 0.4em;
+}
+.row__note {
+  display: block;
+  margin-top: 0.6em;
+  font: 400 15px/1.7 var(--sans);
+  color: var(--ink-2);
+}
+.plate {
+  width: var(--measure);
+  display: grid;
+  gap: 0.9rem;
+  margin: 0;
+}
+.plate__frame {
+  position: relative;
+  overflow: hidden;
+  background: var(--paper-deep);
+  aspect-ratio: 1920 / 1281;
+}
+.plate__frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.facts {
+  width: var(--measure);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 28px;
+  border-top: 1px solid var(--rule);
+  margin: 0;
+  padding-top: 2rem;
+}
+.fact dt {
+  font: 500 15px/1.6 var(--sans);
+  color: var(--ink-2);
+  margin-bottom: 0.7rem;
+}
+.fact dd {
+  margin: 0;
+  font-size: 20px;
+  line-height: 1.75;
+}
+
+/* ---------------------------------------------------------- final invitation */
+
+.ring {
+  padding-block: clamp(80px, 14svh, 140px) 12px;
+}
+.ring__inner {
+  width: 100%;
+  display: grid;
+  justify-items: center;
+  text-align: center;
+}
+.ring__message {
+  width: min(58vw, 260px);
+  padding-block: 12px;
+}
+.ring__message .index { margin-bottom: 24px; }
+.ring__lead {
+  font-size: clamp(24px, 4vw, 32px);
+  font-weight: 300;
+  line-height: 1.55;
+  white-space: pre-line;
+  margin: 0;
+}
+.ring__closing {
+  margin: clamp(72px, 12svh, 104px) 0 0;
+  font-size: clamp(20px, 3vw, 28px);
+}
+.colophon {
+  position: relative;
+  z-index: 2;
+  padding: 20px 20px max(88px, calc(64px + env(safe-area-inset-bottom)));
+  text-align: center;
+  border-top: 1px solid var(--rule);
+}
+.colophon p {
+  margin: 0;
+  font-size: 19px;
+  line-height: 1.8;
+}
+.colophon .colophon__date {
+  font: 400 clamp(28px, 6.5vw, 38px)/1.5 var(--serif);
+}
+.colophon .colophon__calendar {
+  margin-top: 6px;
+  font-size: 16px;
+  color: var(--ink-2);
+}
+.colophon__schedule {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  width: min(360px, 100%);
+  margin: 26px auto 22px;
+}
+.colophon__schedule p + p { border-left: 1px solid var(--rule); }
+.colophon__schedule time {
+  display: block;
+  font: italic 500 38px/1.2 'Cormorant', Georgia, serif;
+  color: var(--thread);
+}
+.colophon__schedule span { display: block; margin-top: 6px; font-size: 18px; }
+.colophon .colophon__venue { font-size: 20px; line-height: 1.6; }
+.colophon .colophon__signature { margin-top: 24px; font-size: 17px; color: var(--ink-2); }
+
+@media (min-width: 800px) {
+  .colophon .colophon__date { font-size: clamp(42px, 4vw, 56px); }
+  .colophon .colophon__calendar { font-size: 21px; }
+  .colophon__schedule { width: min(520px, 100%); }
+  .colophon__schedule time { font-size: 54px; }
+  .colophon__schedule span { font-size: 24px; }
+  .colophon .colophon__venue { font-size: 27px; }
+  .colophon .colophon__signature { font-size: 22px; }
+}
+
+/* Small phones retain the same story, with less space between the words. */
+@media (max-width: 640px) and (orientation: portrait) {
+  .pull__photo { height: auto; aspect-ratio: 4 / 5; }
+}
+@media (pointer: coarse) {
+  .pull__handle {
+    top: 30%;
+    bottom: auto;
+    height: var(--pull-touch-height, calc(10svh + 12px));
+    transform: translateY(-50%);
+  }
+}
+@media (max-width: 799px), (pointer: coarse) {
+  .colophon { padding-bottom: max(58.667px, calc(38px + env(safe-area-inset-bottom))); }
+}
+
+@media (max-height: 680px) {
+  .overture { padding-block: 24px; }
+  .overture__inner { gap: 20px; }
+  .names { gap: 28px; }
+  .name { font-size: clamp(46px, 9vw, 70px); }
+  .overture__meta { gap: 10px; }
+  .overture__date, .overture__venue { font-size: 18px; }
+  .pull__inner { gap: 20px; padding-block: 20px; }
+  .pull__copy .body { font-size: 17px; line-height: 1.7; }
+  .tie__inner { gap: 8px; padding-block: 16px; }
+  .tie__stack { min-height: 100px; }
+}
+
+/* Landscape uses a normal reading flow when a whole stage cannot fit vertically. */
+@media (orientation: landscape) and (max-height: 500px) {
+  .hold { position: relative; }
+  .pull, .tie { min-height: 0; }
+  .pull__photo { width: min(100%, 97.5svh); height: 65svh; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .tie__first { display: none; }
+  .tie__merged, .tie__after { opacity: 1; }
+}

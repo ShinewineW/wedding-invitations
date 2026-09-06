@@ -1,0 +1,201 @@
+{
+  "upstream": "../fusion",
+  "policy": "Independent pinned design snapshot. Upstream paths document provenance only; builds verify the local files below and never require a live upstream checkout. Update hashes deliberately when changing the snapshot.",
+  "designBaseline": {
+    "scope": "Approved photograph selection, framing, and fixed phone geometry."
+  },
+  "photographs": {
+    "policy": "Prepared independently by the repository asset script. Demo placeholders and local originals are both supported and are excluded from source snapshot verification."
+  },
+  "viewport": {
+    "width": 375,
+    "height": 812
+  },
+  "files": [
+    {
+      "snapshot": "vendor-source/app/arrows.css",
+      "source": "../fusion/app/arrows.css",
+      "sha256": "bdd7dbd84459920cb6741917051877c2454797d55a0a8a69e30909fec1aa982a"
+    },
+    {
+      "snapshot": "vendor-source/app/assets/cover-brush.woff2",
+      "source": "../fusion/app/assets/cover-brush.woff2",
+      "sha256": "4daca8dbf6f9d803b8acf98978652f2c8cfb3f8c5396a3f47bbcc1686999adb2"
+    },
+    {
+      "snapshot": "vendor-source/app/assets/letter-brush.woff2",
+      "source": "../fusion/app/assets/letter-brush.woff2",
+      "sha256": "1a891199ab618f0872c3078fa61c6aa88e37b74a4fc2ccf5ed70ca10fd323c7d"
+    },
+    {
+      "snapshot": "vendor-source/app/assets/letter-hand.woff2",
+      "source": "../fusion/app/assets/letter-hand.woff2",
+      "sha256": "7ad7e06ab913fd6bae0309281cecbf28a9aa4befd1d642c6dfacd4770567332e"
+    },
+    {
+      "snapshot": "vendor-source/app/assets/letter-serif.woff2",
+      "source": "../fusion/app/assets/letter-serif.woff2",
+      "sha256": "915c727a5ba4f2d31dd925d027b4b09fff47e5281adb641c87c4130dee835f5a"
+    },
+    {
+      "snapshot": "vendor-source/app/assets/wedding-numerals.woff2",
+      "source": "../fusion/app/assets/wedding-numerals.woff2",
+      "sha256": "cd959fb4ef7c3034e3c13ba8f3e8c720b5b18e477df670308f9e2464a4bb97fd"
+    },
+    {
+      "snapshot": "vendor-source/app/correspondence.css",
+      "source": "../fusion/app/correspondence.css",
+      "sha256": "477cffe4b677eba0ac2f10c3afbc1e6b4efb23934e0ad07b1d9e7c7e6b3120d0"
+    },
+    {
+      "snapshot": "vendor-source/app/cover.css",
+      "source": "../fusion/app/cover.css",
+      "sha256": "4882e1a050426ba2acd98b62153aa7f1fefd9f9e611f55718fb47923b0df90d3"
+    },
+    {
+      "snapshot": "vendor-source/app/dusk-ring.css",
+      "source": "../fusion/app/dusk-ring.css",
+      "sha256": "e1a141de6523b5232d86b35772893ec99aa6dcd6c8e917a3de4cbe64e03448c5"
+    },
+    {
+      "snapshot": "vendor-source/app/fusion.css",
+      "source": "../fusion/app/fusion.css",
+      "sha256": "5557c4b222e6eee0693d3636151db26b4029e124c51667c2b506f2143032ffa4"
+    },
+    {
+      "snapshot": "vendor-source/app/globals.css",
+      "source": "../fusion/app/globals.css",
+      "sha256": "63623eae857c2d924671e3f16b9c3e41b9a26695f1f97919f0360a77ae07e9fc"
+    },
+    {
+      "snapshot": "vendor-source/app/image-save.css",
+      "source": "../fusion/app/image-save.css",
+      "sha256": "cecd18dca1a9b63669174fc7a874c7e3d42e3b304c7db970e0c7f82cfbb37825"
+    },
+    {
+      "snapshot": "vendor-source/app/layout.tsx",
+      "source": "../fusion/app/layout.tsx",
+      "sha256": "c4cd75fb1c2839711c3ee3cfa49e7f2c4975a1e6b2bf8f4ceae76dd5fa3dbb7d"
+    },
+    {
+      "snapshot": "vendor-source/app/red-thread.css",
+      "source": "../fusion/app/red-thread.css",
+      "sha256": "b8b029deeb16a8c6ad7f7ceba7831118fad4c422a05577677df1c5bcf455d4b4"
+    },
+    {
+      "snapshot": "vendor-source/app/thread-path.css",
+      "source": "../fusion/app/thread-path.css",
+      "sha256": "f20e8167e5315d5fc7b731e5261da7c3434c5995e48b402367e96936ae5bfd18"
+    },
+    {
+      "snapshot": "vendor-source/components/red-thread/PhotoThread.tsx",
+      "source": "../fusion/components/red-thread/PhotoThread.tsx",
+      "sha256": "7b243826f1a59298ca1551f1b7f2735fd418a126718f239476aaa1db7ed5c5fd"
+    },
+    {
+      "snapshot": "vendor-source/components/red-thread/chapters/TheRing.tsx",
+      "source": "../fusion/components/red-thread/chapters/TheRing.tsx",
+      "sha256": "fb2111976fc5dc2905e998401ab32b1de0549f5ba73a8ad25208e57717bfc486"
+    },
+    {
+      "snapshot": "vendor-source/components/red-thread/chapters/TheTie.tsx",
+      "source": "../fusion/components/red-thread/chapters/TheTie.tsx",
+      "sha256": "8b3abbc7c02fba2f60360b0e7afc45f61360c2c3d24857ef75ff44fc2d25c7d9"
+    },
+    {
+      "snapshot": "vendor-source/components/red-thread/content.ts",
+      "source": "../fusion/components/red-thread/content.ts",
+      "sha256": "8cfb87e7418f996d5405fdc5e72ad126898556c9eb41813a2948de17fdb79bb8"
+    },
+    {
+      "snapshot": "vendor-source/components/red-thread/line/daylight.ts",
+      "source": "../fusion/components/red-thread/line/daylight.ts",
+      "sha256": "ef0fb788cb8b7399e423bb9ed1060b694a06a23a28245e8e7aede677a5e8ac5b"
+    },
+    {
+      "snapshot": "vendor-source/components/red-thread/line/engine.ts",
+      "source": "../fusion/components/red-thread/line/engine.ts",
+      "sha256": "6ea6181ce2d273e96dfbe61caf6ff86777e25ccd49ef3e864d2675205e828200"
+    },
+    {
+      "snapshot": "vendor-source/components/red-thread/line/render.ts",
+      "source": "../fusion/components/red-thread/line/render.ts",
+      "sha256": "bbded3d4d188b06ba44623b7db3a4ecccbafc5a2e6a2168131322d3c79b56320"
+    },
+    {
+      "snapshot": "vendor-source/components/red-thread/line/shapes.ts",
+      "source": "../fusion/components/red-thread/line/shapes.ts",
+      "sha256": "98e1622c9a2104f13f2b37698d11502b7f3950becf38762398133abf3789659d"
+    },
+    {
+      "snapshot": "vendor-source/components/red-thread/line/stage.tsx",
+      "source": "../fusion/components/red-thread/line/stage.tsx",
+      "sha256": "b37d594421258b19fd8fca49c2e61d01b3deada7de9ea9c005f7ae7cdee78a87"
+    },
+    {
+      "snapshot": "vendor-source/components/wedding/Correspondence.tsx",
+      "source": "../fusion/components/wedding/Correspondence.tsx",
+      "sha256": "6e3341213aeac1de508133e7ea849ccce406ca21b579cbbee745ada0f851649c"
+    },
+    {
+      "snapshot": "vendor-source/components/wedding/CoverFront.tsx",
+      "source": "../fusion/components/wedding/CoverFront.tsx",
+      "sha256": "b99fd5376fb572894e95138375191d1eefb71d0bde764098c5149e4d5ed4487a"
+    },
+    {
+      "snapshot": "vendor-source/components/wedding/Invitation.tsx",
+      "source": "../fusion/components/wedding/Invitation.tsx",
+      "sha256": "c7878ddb8d23e5a25ad8a84b56f01fbc328748eb389eace5ad8888e9b2b0dd84"
+    },
+    {
+      "snapshot": "vendor-source/components/wedding/OpeningCover.tsx",
+      "source": "../fusion/components/wedding/OpeningCover.tsx",
+      "sha256": "aea834eb3f967e3d4f4a879de50bdcdac9b60f5919a803ef0fe2342478032035"
+    },
+    {
+      "snapshot": "vendor-source/components/wedding/Photo.tsx",
+      "source": "../fusion/components/wedding/Photo.tsx",
+      "sha256": "eaa3c5033855ca384c9e75cfda55fe248b5bb62a9f1fbd3281ebb97b08aecb02"
+    },
+    {
+      "snapshot": "vendor-source/components/wedding/WeddingExperience.tsx",
+      "source": "../fusion/components/wedding/WeddingExperience.tsx",
+      "sha256": "d144fc805a7d97216ff339864d6fdd43efaad40decfe5ec6e86bf0cce3105f6d"
+    },
+    {
+      "snapshot": "vendor-source/lib/wedding.ts",
+      "source": "../fusion/lib/wedding.ts",
+      "sha256": "9fcf502294ca79e28b2bb1bdb023b15d9b17255e8c02af76e5ca46b449811357"
+    },
+    {
+      "snapshot": "vendor-source/public/paper-grain.svg",
+      "source": "../fusion/public/paper-grain.svg",
+      "sha256": "ed62773962852d3c03d73d79d4c6aa8e4eca2d7c30a79994b950cac1882fdc23"
+    },
+    {
+      "snapshot": "vendor-source/tailwind-preflight.css",
+      "source": "../fusion/node_modules/tailwindcss/preflight.css",
+      "sha256": "fa2d5ae43ae561061b7ce348b89636dbdc6cd71ab5992d4e1cdd046d0b4f28f9"
+    },
+    {
+      "snapshot": "public/paper-grain.svg",
+      "source": "../fusion/public/paper-grain.svg",
+      "sha256": "ed62773962852d3c03d73d79d4c6aa8e4eca2d7c30a79994b950cac1882fdc23"
+    },
+    {
+      "snapshot": "public/wedding2/red-thread/fonts/cormorant-var-italic.woff2",
+      "source": "../fusion/public/red-thread/fonts/cormorant-var-italic.woff2",
+      "sha256": "b931f0a45f9d8a362e45e950c004ff00c8ab7932c2c401b4db9c2b7b9247f01a"
+    },
+    {
+      "snapshot": "public/wedding2/red-thread/fonts/cormorant-var.woff2",
+      "source": "../fusion/public/red-thread/fonts/cormorant-var.woff2",
+      "sha256": "d80df8ff5aecd299a61549f9e29ab1ed0b9b05f4ea71d50fe978e07d5240b235"
+    },
+    {
+      "snapshot": "public/wedding2/red-thread/fonts/instrument-var.woff2",
+      "source": "../fusion/public/red-thread/fonts/instrument-var.woff2",
+      "sha256": "2ee17598a98d8a59e4df8152d015bec9ab8e4d5672cc0ab42bef806b568e3971"
+    }
+  ]
+}

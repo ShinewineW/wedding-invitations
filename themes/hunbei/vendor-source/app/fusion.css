@@ -1,0 +1,239 @@
+/* The original paper sequence carries the same cord into the night chapters. */
+.chapter-navigation {
+  justify-content: space-between;
+  gap: 20px;
+}
+.companionship {
+  position: relative;
+}
+.companionship .chapter-heading > p {
+  max-width: 590px;
+  line-height: 2.15;
+}
+.red-thread-chapters {
+  -webkit-font-smoothing: auto;
+  z-index: auto;
+}
+.red-thread-stage > main {
+  z-index: auto;
+}
+.red-thread-chapters .plate__frame {
+  z-index: 3;
+}
+.red-thread-chapters .ring {
+  box-shadow: none;
+}
+.story:last-of-type .story-caption,
+.waterfall-ending {
+  --dusk-mix: calc(var(--thread-tone, 0) * 100%);
+  color: color-mix(in oklab, #efe8d9 var(--dusk-mix), var(--muted-ink));
+}
+.story:last-of-type .story-caption :is(h3, .read-reverse) {
+  color: color-mix(in oklab, #f4643f var(--dusk-mix), var(--red));
+}
+.story:last-of-type .story-caption :is(.story-number, p) {
+  color: inherit;
+}
+.photo-waterfall {
+  position: relative;
+  isolation: isolate;
+}
+.story-photograph,
+.story-caption {
+  z-index: 1;
+}
+.story-caption {
+  position: relative;
+}
+.story-rose {
+  grid-template-columns: 0.8fr 1.2fr;
+}
+.story-rose .story-photograph {
+  grid-column: 2;
+  grid-row: 1;
+  padding: 15px 15px 50px;
+  background: #f4e4dd;
+  transform: rotate(1.5deg);
+}
+.story-rose .story-photograph img {
+  height: 610px;
+}
+.story-rose .story-caption {
+  grid-column: 1;
+  grid-row: 1;
+}
+.story-rose .story-caption h3 {
+  font-family: var(--hand);
+}
+.stationery-rose {
+  padding-top: 64px;
+  background:
+    linear-gradient(
+      105deg,
+      transparent 49.6%,
+      #ae82751a 50%,
+      #fff9 50.3%,
+      transparent 50.8%
+    ),
+    #f2e1da;
+  position: relative;
+  color: #673d37;
+}
+.stationery-rose .stationery-title {
+  font: 400 clamp(32px, 4vw, 52px)/1.4 var(--brush);
+  margin-top: 50px;
+}
+.stationery-rose .stationery-message {
+  font-family: var(--hand);
+  font-size: clamp(22px, 2.5vw, 31px);
+  line-height: 2.2;
+}
+.stationery-rose .stationery-signature {
+  border-top: 1px solid #b8927f;
+  padding-top: 24px;
+}
+.rose-fold {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 54px;
+  height: 54px;
+  background: linear-gradient(45deg, #dfc2b3 49%, #fcf9f2 50%);
+  filter: drop-shadow(-2px 2px 2px #68463816);
+}
+.heartfelt,
+.invitation {
+  position: relative;
+}
+@media (max-width: 700px) {
+  .chapter-navigation {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px 12px;
+    padding: 18px 5%;
+  }
+  .chapter-navigation a {
+    gap: 6px;
+    justify-content: center;
+  }
+  .chapter-navigation a:first-child {
+    justify-content: start;
+  }
+  .companionship .chapter-heading h2 {
+    font-size: clamp(29px, 7.2vw, 48px);
+  }
+  .companionship .chapter-heading > p {
+    font-size: 14px;
+    max-width: 34em;
+  }
+  .story-rose {
+    grid-template-columns: 1fr;
+  }
+  .story-rose .story-photograph,
+  .story-rose .story-caption {
+    grid-column: auto;
+    grid-row: auto;
+  }
+  .story-rose .story-photograph img {
+    height: 120vw;
+    max-height: 620px;
+  }
+  .stationery-rose .stationery-message {
+    font-size: 22px;
+  }
+}
+
+/* Mobile stops include the picture and its caption, or the whole heart spread. */
+@media (max-width: 700px) {
+  .story-rose .story-photograph img {
+    height: 51svh;
+    min-height: 220px;
+    max-height: 540px;
+  }
+  .heartfelt {
+    padding: 28px 5% 40px;
+  }
+  .heartfelt .chapter-heading {
+    margin-bottom: 18px;
+  }
+  .heartfelt .chapter-heading h2 {
+    margin-top: 10px;
+  }
+  .heartfelt-spread {
+    gap: 12px 10px;
+  }
+  .heart-invite {
+    padding: 18px 18px 14px;
+    gap: 12px;
+    margin-bottom: 0;
+  }
+  .red-thread-chapters .ring {
+    min-height: 100svh;
+    justify-content: center;
+    padding-block: 48px;
+  }
+}
+@media (max-width: 700px) and (max-height: 620px) {
+  .story-photograph img,
+  .story-memo .story-photograph img,
+  .story-postcard .story-photograph img,
+  .story-rose .story-photograph img {
+    height: 43svh;
+    min-height: 220px;
+  }
+  .heartfelt {
+    padding-block: 20px 28px;
+  }
+  .heartfelt .chapter-heading h2 {
+    font-size: 28px;
+  }
+  .heart-invite {
+    padding: 12px 16px;
+    gap: 8px;
+  }
+  .heart-invite > strong {
+    font-size: 96px;
+  }
+  .heart-letter {
+    padding: 16px 12px 24px;
+  }
+  .heart-letter p {
+    font-size: 15px;
+    margin-top: 12px;
+  }
+  .heart-signature {
+    margin-top: 12px;
+  }
+}
+@media (max-width: 700px) and (max-height: 620px) {
+  .heartfelt {
+    padding-top: 16px;
+  }
+  .heartfelt .chapter-heading {
+    margin-bottom: 12px;
+  }
+  .heartfelt .chapter-heading h2 {
+    font-size: 26px;
+  }
+  .heart-invite > p {
+    font-size: 16px;
+    white-space: nowrap;
+  }
+  .heart-invite > strong {
+    font-size: 84px;
+    grid-row: 1 / span 4;
+  }
+  .heart-invite > a {
+    grid-column: 2;
+    grid-row: 4;
+    font-size: 13px;
+    min-height: 24px;
+  }
+  .heart-letter {
+    padding: 14px 10px 24px;
+  }
+  .heart-letter p {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+}

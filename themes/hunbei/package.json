@@ -1,0 +1,28 @@
+{
+  "name": "wedding-hunbei",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 4176",
+    "build": "node scripts/prepare-source.mjs && tsc --noEmit && vite build",
+    "preview": "vite preview --host 127.0.0.1 --port 4176",
+    "typecheck": "tsc --noEmit",
+    "predev": "node ../../scripts/prepare-assets.mjs hunbei",
+    "prebuild": "node ../../scripts/prepare-assets.mjs hunbei"
+  },
+  "dependencies": {
+    "react": "19.2.6",
+    "react-dom": "19.2.6"
+  },
+  "devDependencies": {
+    "@types/node": "22.19.19",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "@vitejs/plugin-react": "6.0.2",
+    "postcss": "8.5.28",
+    "sharp": "0.34.5",
+    "typescript": "5.9.3",
+    "vite": "8.0.13"
+  }
+}

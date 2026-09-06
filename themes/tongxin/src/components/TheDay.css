@@ -1,0 +1,12 @@
+/* Let wrapped captions contribute their full height before the venue begins. */
+.day > .plate {
+  display: block;
+}
+
+.day > .plate > .caption {
+  margin-block-start: 0.9rem;
+}
+
+.day .plate__frame img {
+  height: auto;
+}

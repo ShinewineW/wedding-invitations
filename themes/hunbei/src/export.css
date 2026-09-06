@@ -1,0 +1,54 @@
+/* Only layout changes needed to place the complete mobile reading sequence on paper. */
+html, body { width: 375px; min-width: 375px; margin: 0; padding: 0; }
+body::after { display: none; }
+*, *::before, *::after { animation: none !important; transition: none !important; }
+#export-page { width: 375px; overflow: hidden; }
+.export-panel { position: relative; width: 375px; isolation: isolate; overflow: hidden; }
+.export-panel::after { content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 70; opacity: .1; background-image: url('/paper-grain.svg'); }
+.export-cover { height: 812px; }
+.export-cover .site-header { color: #fffaf0; border-color: #fffaf042; }
+.export-cover .wordmark { color: #fffaf0; }
+.export-inside { height: 380px; background: var(--paper); }
+.export-inside .cover-inside { padding-bottom: 35px; }
+.export-intro { padding: 29px 6% 22px; }
+.export-intro .chapter-heading { margin-bottom: 0; }
+.static-thread { position: absolute; inset: 0; pointer-events: none; z-index: 4; }
+.export-photo { padding-top: 12px; background: var(--paper); }
+.export-photo .story { width: 88%; margin: 0 auto 16px; gap: 0; overflow: visible; }
+.export-photo .story-photograph { flex: none; }
+.export-photo .story-photograph img { height: 414.12px; }
+.export-photo .story-book .story-photograph img { height: 365.4px; }
+.export-photo .stationery { width: 351px; margin: 0 auto; }
+.static-motif { height: 80px; width: 375px; }
+.static-motif svg { display: block; width: 375px; height: 80px; }
+.static-motif path { fill: none; stroke: #ba4029; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+.export-photo .waterfall-ending { margin: 28px 0 32px; padding: 0 30px; }
+.export-tie .tie { min-height: 0; width: 100%; }
+.export-tie .hold { position: relative; min-height: 0; }
+.export-tie .tie__inner { gap: 12px; }
+.export-tie .tie__knot { flex: none; }
+.export-tie-twilight { height: 300px; }
+.export-tie-twilight .hold { height: 300px; }
+.export-tie-twilight .tie__inner { padding-block: 20px; }
+.export-tie-twilight .tie__knot { height: 90px; }
+.export-tie-night { height: 590px; }
+.export-tie-night .hold { height: 590px; }
+.export-tie-night .tie__knot { height: 240px; }
+.export-tie-night .tie__inner { padding-block: 10px; gap: 6px; }
+.export-tie-night .tie__stack { min-height: 80px; }
+.export-tie-night .red-thread-moon { --tp: 1; --night: 1; top: 52px; }
+.export-tie .tie__first, .export-tie .tie__merged, .export-tie .tie__after { opacity: 1; }
+.export-ring { height: 460px; }
+.red-thread-chapters.export-ring .ring { min-height: 460px; height: 460px; padding-block: 38px; }
+.red-thread-chapters.export-ring .ring__message { clip-path: none; --ring-reveal: 1; }
+.export-panel.heartfelt { padding: 40px 5% 48px; }
+.export-panel.heartfelt .heart-letters { align-items: stretch; }
+.export-panel.heartfelt .heart-letter { padding-bottom: 25px; }
+.export-panel.invitation { padding-top: 20px; padding-bottom: 24px; }
+.export-panel.invitation .invitation-main { padding-top: 32px; padding-bottom: 20px; }
+.export-panel.invitation .invitation-heading h2 { margin-top: 20px; }
+.export-panel.invitation .invitation-heading > p { margin-top: 20px; }
+.export-panel.invitation .couple-signature { margin-top: 22px; }
+.export-panel.invitation .invitation-details { margin-top: 28px; padding-top: 26px; }
+.export-panel.invitation .schedule { margin-top: 22px; }
+.export-panel.invitation .venue { padding-block: 18px; }

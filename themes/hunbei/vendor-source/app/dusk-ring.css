@@ -1,0 +1,29 @@
+/* One dark layer fades over the paper; text follows the resulting contrast. */
+.red-thread-night {
+  background: #14100c;
+  opacity: var(--thread-night, 0);
+  transition: none;
+}
+.red-thread-chapters {
+  --paper: var(--thread-ground, #f3efe5);
+  --ink: var(--thread-ink, #16130f);
+  --ink-2: var(--thread-secondary, #4b453b);
+  --ink-3: var(--thread-secondary, #4b453b);
+  --thread: var(--thread-readable-red, #902e2c);
+}
+.story:last-of-type .story-caption,
+.waterfall-ending {
+  color: var(--thread-secondary, var(--muted-ink));
+}
+.story:last-of-type .story-caption :is(h3, .read-reverse) {
+  color: var(--thread-readable-red, var(--red));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .red-thread-chapters .tie__first {
+    display: grid;
+    opacity: clamp(0, calc(3.34 - var(--tp) * 8.34), 1);
+  }
+  .red-thread-chapters .tie__merged { opacity: clamp(0, calc(var(--tp) * 7.15 - 3), 1); }
+  .red-thread-chapters .tie__after { opacity: clamp(0, calc(var(--tp) * 7.15 - 3.9), 1); }
+}

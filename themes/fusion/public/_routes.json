@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "include": [
+    "/*"
+  ],
+  "exclude": [
+    "/wedding",
+    "/wedding/",
+    "/wedding/_next/*",
+    "/wedding/images/*",
+    "/wedding/fonts/*",
+    "/wedding2",
+    "/wedding2/*"
+  ]
+}

@@ -1,0 +1,281 @@
+{
+  "yusheng": {
+    "directories": [
+      "public/images"
+    ],
+    "photos": [
+      {
+        "path": "public/images/together-1280.webp",
+        "width": 1280,
+        "height": 1919
+      },
+      {
+        "path": "public/images/a-long-way-2048.webp",
+        "width": 2048,
+        "height": 1366
+      },
+      {
+        "path": "public/images/courtyard-1280.webp",
+        "width": 1280,
+        "height": 1919
+      },
+      {
+        "path": "public/images/a-long-way-1280.webp",
+        "width": 1280,
+        "height": 854
+      },
+      {
+        "path": "public/images/a-long-way-640.webp",
+        "width": 640,
+        "height": 427
+      },
+      {
+        "path": "public/images/together-640.webp",
+        "width": 640,
+        "height": 960
+      },
+      {
+        "path": "public/images/promise-1280.webp",
+        "width": 1280,
+        "height": 1919
+      },
+      {
+        "path": "public/images/courtyard-640.webp",
+        "width": 640,
+        "height": 960
+      },
+      {
+        "path": "public/images/promise-640.webp",
+        "width": 640,
+        "height": 960
+      }
+    ]
+  },
+  "tongxin": {
+    "directories": [
+      "public/img"
+    ],
+    "photos": [
+      {
+        "path": "public/img/thread-01.webp",
+        "width": 960,
+        "height": 1200
+      },
+      {
+        "path": "public/img/our-day.webp",
+        "width": 1920,
+        "height": 1281
+      },
+      {
+        "path": "public/img/our-promise-mobile.webp",
+        "width": 1281,
+        "height": 1920
+      },
+      {
+        "path": "public/img/hands.jpg",
+        "width": 900,
+        "height": 1125
+      },
+      {
+        "path": "public/img/pull-faces.webp",
+        "width": 1080,
+        "height": 1350
+      },
+      {
+        "path": "public/img/thread-04.webp",
+        "width": 960,
+        "height": 1200
+      },
+      {
+        "path": "public/img/our-promise.webp",
+        "width": 1920,
+        "height": 1281
+      },
+      {
+        "path": "public/img/thread-05.webp",
+        "width": 960,
+        "height": 1200
+      },
+      {
+        "path": "public/img/pull-faces-wide.webp",
+        "width": 1440,
+        "height": 960
+      },
+      {
+        "path": "public/img/grove.jpg",
+        "width": 1400,
+        "height": 766
+      },
+      {
+        "path": "public/img/thread-02.webp",
+        "width": 960,
+        "height": 1200
+      },
+      {
+        "path": "public/img/thread-03.webp",
+        "width": 960,
+        "height": 1200
+      }
+    ]
+  },
+  "fusion": {
+    "directories": [
+      "public/images",
+      "assets/photo-originals"
+    ],
+    "photos": [
+      {
+        "path": "assets/photo-originals/5A8A6596.jpg",
+        "width": 8021,
+        "height": 5350
+      },
+      {
+        "path": "assets/photo-originals/5A8A1204.jpg",
+        "width": 5464,
+        "height": 8192
+      },
+      {
+        "path": "assets/photo-originals/5A8A1854.jpg",
+        "width": 5464,
+        "height": 8192
+      },
+      {
+        "path": "assets/photo-originals/5A8A5952.jpg",
+        "width": 5334,
+        "height": 7997
+      },
+      {
+        "path": "assets/photo-originals/5A8A6497.jpg",
+        "width": 5334,
+        "height": 7997
+      },
+      {
+        "path": "public/images/5A8A6596-2560.webp",
+        "width": 2560,
+        "height": 1708
+      },
+      {
+        "path": "public/images/5A8A6627.jpg",
+        "width": 8021,
+        "height": 5350
+      },
+      {
+        "path": "public/images/5A8A6634.jpg",
+        "width": 5334,
+        "height": 7997
+      },
+      {
+        "path": "public/images/5A8A6596-768.webp",
+        "width": 768,
+        "height": 512
+      },
+      {
+        "path": "public/images/5A8A1854-768.webp",
+        "width": 768,
+        "height": 1151
+      },
+      {
+        "path": "public/images/5A8A6596-1920.webp",
+        "width": 1920,
+        "height": 1281
+      },
+      {
+        "path": "public/images/5A8A6596-1280.webp",
+        "width": 1280,
+        "height": 854
+      },
+      {
+        "path": "public/images/5A8A5952-768.webp",
+        "width": 768,
+        "height": 1152
+      },
+      {
+        "path": "public/images/5A8A5952-1280.webp",
+        "width": 1280,
+        "height": 1919
+      },
+      {
+        "path": "public/images/5A8A1204-1280.webp",
+        "width": 1280,
+        "height": 1919
+      },
+      {
+        "path": "public/images/5A8A6497-1280.webp",
+        "width": 1280,
+        "height": 1919
+      },
+      {
+        "path": "public/images/5A8A1204-1920.webp",
+        "width": 1920,
+        "height": 2879
+      },
+      {
+        "path": "public/images/5A8A6497-1920.webp",
+        "width": 1920,
+        "height": 2879
+      },
+      {
+        "path": "public/images/5A8A5952-1920.webp",
+        "width": 1920,
+        "height": 2879
+      },
+      {
+        "path": "public/images/5A8A6497-768.webp",
+        "width": 768,
+        "height": 1152
+      },
+      {
+        "path": "public/images/5A8A1204-768.webp",
+        "width": 768,
+        "height": 1151
+      },
+      {
+        "path": "public/images/5A8A1854-1920.webp",
+        "width": 1920,
+        "height": 2879
+      },
+      {
+        "path": "public/images/5A8A1854-1280.webp",
+        "width": 1280,
+        "height": 1919
+      }
+    ]
+  },
+  "hunbei": {
+    "directories": [
+      "public/wedding2/images"
+    ],
+    "photos": [
+      {
+        "path": "public/wedding2/images/5A8A6596.jpg",
+        "width": 8021,
+        "height": 5350
+      },
+      {
+        "path": "public/wedding2/images/5A8A1204.jpg",
+        "width": 5464,
+        "height": 8192
+      },
+      {
+        "path": "public/wedding2/images/5A8A6634.jpg",
+        "width": 5334,
+        "height": 7997
+      },
+      {
+        "path": "public/wedding2/images/5A8A1854.jpg",
+        "width": 5464,
+        "height": 8192
+      },
+      {
+        "path": "public/wedding2/images/5A8A5952.jpg",
+        "width": 5334,
+        "height": 7997
+      },
+      {
+        "path": "public/wedding2/images/5A8A6497.jpg",
+        "width": 5334,
+        "height": 7997
+      }
+    ]
+  }
+}

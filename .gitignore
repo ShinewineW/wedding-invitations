@@ -1,0 +1,35 @@
+# Private photographs, original documentation and local verification
+/.local/
+
+# All photographic inputs and generated variants are recreated before builds.
+/themes/yusheng/public/images/
+/themes/tongxin/public/img/
+/themes/fusion/public/images/
+/themes/fusion/assets/photo-originals/
+/themes/fusion/assets/photo-variants.json
+/themes/hunbei/public/wedding2/images/
+
+# Dependencies, build products, screenshots and invitation exports
+node_modules/
+dist/
+.next/
+.vinext/
+.wrangler/
+release/
+exports/
+evidence/
+.local-review/
+local-review/
+test-results/
+playwright-report/
+coverage/
+outputs/
+work/
+.art-direction/
+*.tsbuildinfo
+__pycache__/
+.DS_Store
+*.log
+.env*
+*.pem
+*.key

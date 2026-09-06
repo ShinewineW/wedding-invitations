@@ -1,0 +1,10 @@
+/* The photograph papers occlude the centre stitches; captions use SVG masks. */
+.photo-thread-cord { z-index: 0; }
+.photo-waterfall .story-photograph { z-index: 1; }
+.photo-waterfall .story-caption { position: relative; z-index: 1; }
+
+/* A complete cord gesture has its own paper space between complete cards. */
+.photo-waterfall .story:not(:last-of-type) { margin-bottom: 152px; }
+@media (max-width: 700px) {
+  .photo-waterfall .story:not(:last-of-type) { margin-bottom: 140px; }
+}
